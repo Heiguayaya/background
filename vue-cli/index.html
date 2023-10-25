@@ -1,0 +1,64 @@
+<html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        /* background-attachment: fixed; */
+        /* height: 2000px; */
+        /* background-image: url('https://tse4-mm.cn.bing.net/th/id/OIP-C.FfoLk4uGl0oMEsgndByqmQHaE8?w=302&h=201&c=7&r=0&o=5&pid=1.7'); */
+    }
+
+    .square {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-bottom: 100%;
+        /* 确保正方形的高度等于宽度 */
+        background-color: #f00;
+        /* 设置背景颜色以便观察效果 */
+    }
+</style>
+
+<body>
+    <div class="square-container">
+        <div class="square"></div>
+    </div>
+
+    <script>
+
+        function request(url, body, succ, error, maxCount = 5) {
+            return fetch(url, body)
+                .then(res => succ(res))
+                .catch(err => {
+                    if (maxCount <= 0) return error('请求超时');
+                    return request(url, body, succ, error, --maxCount);
+                });
+        }
+
+        // 调用请求函数
+        request('http://www.qinheyu.xyz/', {
+            method: 'GET',
+            headers: {}
+        },
+            (res) => {
+                console.log(res.data);
+            },
+            (err) => {
+                console.log(err);
+            })
+    </script>
+</body>
+
+</html>
