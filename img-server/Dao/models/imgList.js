@@ -4,7 +4,7 @@ const {
 const sequelize = require('../dbContent')
 
 const imgList = module.exports = sequelize.define('imgList', {
-    details: {
+    desc: {
         type: DataTypes.STRING,
         allowNull: false
     },
